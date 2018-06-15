@@ -52,6 +52,8 @@ class Vector3D{
        const Vector3D& operator%(const Vector3D& other) const;
        Vector3D& operator%= (const Vector3D& other);
 
+       //git test push
+
 };
 
 #endif
