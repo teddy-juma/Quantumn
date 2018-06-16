@@ -18,7 +18,7 @@ class Vector3D{
 
         const T& getY() const;
         void setY(const T& newY);
-
+ 
         const T& getZ() const;
         void setZ(const T& newZ);
 
