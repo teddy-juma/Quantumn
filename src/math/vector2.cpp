@@ -1,4 +1,4 @@
-#include "Vector2D.h"
+#include "vector2.h"
 
 
 template<class T>
@@ -23,27 +23,26 @@ const T& Vector2D<T>::getY() const{
     return y;
 }
 template<class T>
-const Vector2D<T>& Vector2D<T>::operator +(const Vector2D& other) const{
-    Vector2D& res(this->x + other.getX(), this->y + other.getY());
+const Vector2D<T> Vector2D<T>::operator +(const Vector2D& other) const{
+    Vector2D res(this->x + other.x, this->y + other.y);
     return res;
 }
 
 template<class T>
-const Vector2D<T>& Vector2D<T>::operator -(const Vector2D& other) const{
-    Vector2D& res(this->x - other.getX(), this->y - other.getY());
+const Vector2D<T> Vector2D<T>::operator -(const Vector2D& other) const{
+    Vector2D res(this->x - other.x, this->y - other.y);
     return res;
 }
 
 template<class T>
-const Vector2D<T>& Vector2D<T>::operator *(const Vector2D& other) const{
-    Vector2D& res(this->x * other.getX(), this->y*other.getY());
+const Vector2D<T> Vector2D<T>::operator *(const Vector2D& other) const{
+    Vector2D res(this->x * other.x, this->y*other.y);
     return res;
 }
 
 template<class T>
-const Vector2D<T>& Vector2D<T>::operator /(const Vector2D& other) const{
-    Vector2D& res(this->x/other.getX(), this->y/other.getY());
-    return res;
+const Vector2D<T> Vector2D<T>::operator /(const Vector2D& other) const{
+    return Vector2D(this->x/other.x, this->y/other.y);
 }
 
 template<class T>
@@ -72,18 +71,42 @@ inline bool Vector2D<T>::operator < (const Vector2D& other) const{
 }
 
 template<class T>
-const Vector2D<T>& Vector2D<T>::operator *(float scalar) const{
-    Vector2D& res(this->x*scalar, this->y*scalar);
-    return res;
+const Vector2D Vector2D<T>::operator *(T scalar) const{
+    return Vector2D(this->x*scalar, this->y*scalar);
 }
 
 template<class T>
-const Vector2D<T>& Vector2D<T>::operator /(float scalar) const{
-    Vector2D& res((this->x / scalar), (this->y / scalar));
-    return res;
+const Vector2D Vector2D<T>::operator /(T scalar) const{
+    return Vector2D((this->x / scalar), (this->y / scalar));
 }
-
 template<class T>
-inline const T Vector2D<T>::getMagnitudeFromOrigin(const Vector2D& other) const{
-    return sqrt(pow(other.getX()) + pow(other.getY()));
+const Vector2D<T>& Vector2D<T>::operator *= (T scalar) const{
+    return *this = *this * scalar;
+}
+const Vector2D<T>& Vector2D<T>::operator /= (T scalar)const{
+    return *this = *this / scalar;
+}
+template<class T>
+inline const T Vector2D<T>::getMagnitudeFromOrigin() const{
+    return sqrt(pow(this->getX(),2) + pow(this->getY(),2));
+}
+template<class T>
+const T& Vector2D<T>::operator[] (int index) const{
+    if(index < 0 || index > 1)return;
+    switch(index){
+        case 0:
+            return x;
+        case 1:
+            return y;
+    }
+}
+template<class T>
+T& Vector2D<T>::operator[] (int index){
+    if(index < 0 || index > 1)exit(1);
+    switch(index){
+        case 0:
+            return x;
+        case 1:
+            return y;
+    }
 }

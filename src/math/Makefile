@@ -1,4 +1,4 @@
-CC = clang++ 
+CC = g++ 
 CFLAGS = -g -Wall -v
 
 default: main
