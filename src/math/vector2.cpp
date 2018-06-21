@@ -83,6 +83,7 @@ template<class T>
 const Vector2D<T>& Vector2D<T>::operator *= (T scalar) const{
     return *this = *this * scalar;
 }
+template<class T>
 const Vector2D<T>& Vector2D<T>::operator /= (T scalar)const{
     return *this = *this / scalar;
 }
